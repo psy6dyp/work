@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">点我</button>
+    <script>
+        // 给元素添加事件的三种方式
+        var oBtn = document.getElementById("btn");
+        /*
+        // chrome IE低版本都支持 因为是属性赋值，后面的会覆盖前面的
+        oBtn.onclick = function() {
+            alert(666);
+        };
+        oBtn.onclick = function() {
+            alert(777);
+        };
+        */
+        // IE9以下不支持 前面和后面的按顺序触发
+        /*
+        oBtn.addEventListener('click', function() {
+            alert(11);
+        })
+        oBtn.addEventListener('click', function() {
+            alert(22);
+        })
+        */
+        // IE11 chrome都不支持，仅支持IE10及以下低版本浏览器 前面和后面的按顺序触发
+        /*
+        oBtn.attachEvent('onclick', function() {
+            alert(88)
+        })
+        oBtn.attachEvent('onclick', function() {
+            alert(99)
+        })
+        */
+        // 可以整合一下一个函数
+        /* 
+            ele: 元素
+            event: 事件
+            fn: 执行的函数
+        */
+        function addEvent(ele, event, fn) {
+            if (ele.attachEvent) {
+                ele.attachEvent('on' + event, fn);
+            } else {
+                ele.addEventListener(event, fn)
+            }
+        }
+        addEvent(oBtn, 'click', function() {
+            alert(666);
+        })
+    </script>
+</body>
+</html>
