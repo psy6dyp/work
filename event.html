@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a id="a" href="http://www.baidu.com">百度</a>
+    <script>
+        // 事件对象 IE9以下不认识event 要写 window.event
+        var oA = document.getElementById('a');
+        oA.onclick = function(event) {
+            event = event || window.event;
+            alert(666);
+            console.log(event);
+            // 企业开发中，用这个阻止默认事件
+            return false;
+            // IE9以下不认识
+            // event.preventDefault();
+            // IE9以下可以
+            event.returnValue = false;
+        }
+    </script>
+</body>
+</html>
