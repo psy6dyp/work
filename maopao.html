@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;padding: 0;
+        }
+        .father {
+            width: 300px;
+            height: 300px;
+            background-color: red;
+        }
+        .son {
+            width: 150px;
+            height: 150px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="father" class="father">
+        <div id="son" class="son"></div>
+    </div>
+    <script>
+        // 事件的三个阶段： 捕获（由外向内） 当前 冒泡（由内向外）
+        // 冒泡和捕获
+        var oF = document.getElementById("father");
+        var oS = document.getElementById("son");
+        // addEventListener 第三个参数默认false，也就是默认冒泡（儿子->父亲）, 第三个参数如果是true就是捕获（父亲->儿子）
+        // onclick或者attachEvent没有第三个参数，所以默认false，冒泡。
+        // oF.addEventListener('click', function() {
+        //     console.log('father');
+        // });
+        // oS.addEventListener('click', function() {
+        //     console.log('son');
+        // });
+        // 如何阻止事件冒泡
+        oF.onclick = function(event) {
+            console.log('father');
+        }
+        oS.onclick = function(event) {
+            event = event || window.event;
+            console.log('son');
+            // IE9以下不认识
+            // event.stopPropagation();
+            // IE就都认识了
+            // event.cancelBubble = true;
+            // 于是整合一下
+            if (event.cancelBubble) {
+                event.cancelBubble = true;
+            } else {
+                event.stopPropagation();
+            }
+        }
+    </script>
+</body>
+</html>
