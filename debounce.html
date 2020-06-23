@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">点我</button>
+    <script>
+        // 函数防抖
+        let oBtn = document.querySelector('#btn');
+        function print(event) {
+            console.log(event);
+        }
+        function debounce(fn, delay = 1000) {
+            let timer;
+            return function () {
+                let args = arguments;
+                let self = this;
+                timer && clearTimeout(timer);
+                timer = setTimeout(function() {
+                    fn.apply(self, args);
+                }, delay);
+            }
+        }
+        oBtn.onclick = debounce(print);
+    </script>
+</body>
+</html>
