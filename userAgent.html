@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var agent = window.navigator.userAgent;
+        if (/chrome/i.test(agent)) {
+            alert('当前是谷歌浏览器');
+        } else if (/firefox/i.test(agent)) {
+            alert('当前是火狐浏览器');
+        } else if (/msie/i.test(agent)) {
+            alert('当前是低级IE浏览器');
+        } else if ('ActiveXObject' in window) {
+            alert('当前高级IE浏览器');
+        }
+    </script>
+</body>
+</html>
